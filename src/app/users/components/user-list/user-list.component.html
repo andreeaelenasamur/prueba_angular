@@ -1,16 +1,23 @@
 <div class="container mt-3">
 
-  <form class="row my-3" [formGroup]="form">
-    <div class="col-12 col-md-4">
-      <input class="form-control" type="text" formControlName="name" placeholder="Name">
-    </div>
-    <div class="col-12 col-md-4">
-      <input class="form-control" type="email" formControlName="email" placeholder="Email">
-    </div>
-    <div class="col-12 col-md-4">
-      <input class="form-control" type="text" formControlName="surnames" placeholder="Surnames">
-    </div>
-  </form>
+  <div class="col my-3">
+    <form (ngSubmit)="searchData()" class="row" [formGroup]="form">
+      <div class="col-12 col-md-3">
+        <input class="form-control" type="text" formControlName="name" placeholder="Name">
+      </div>
+      <div class="col-12 col-md-3">
+        <input class="form-control" type="email" formControlName="email" placeholder="Email">
+      </div>
+      <div class="col-12 col-md-3">
+        <input class="form-control" type="text" formControlName="surnames" placeholder="Surnames">
+      </div>
+
+      <div class="col-12 col-md-3">
+        <button type="submit" class="btn btn-primary">Search</button>
+      </div>
+    </form>
+  </div>
+
 
   <table class="table">
     <thead>
@@ -23,7 +30,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of userList | filter: form.value">
+      <tr *ngFor="let user of userList">
         <td>{{user.id}}</td>
         <td>{{user.name}}</td>
         <td>{{user.email}}</td>
@@ -32,4 +39,12 @@
       </tr>
     </tbody>
   </table>
+
+  <nav *ngIf="userList && userList.length" aria-label="Page navigation example" class="d-flex justify-content-center">
+    <ul class="pagination">
+      <li *ngIf="currentPage > 1" class="page-item" (click)="previousPage()"><a class="page-link">Previous</a></li>
+      <li class="page-item"><a class="page-link">{{currentPage}}</a></li>
+      <li *ngIf="currentPage < lastPage" class="page-item" (click)="nextPage()"><a class="page-link">Next</a></li>
+    </ul>
+  </nav>
 </div>

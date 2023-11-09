@@ -13,7 +13,16 @@ export class UserListComponent implements OnInit{
   userList: User[];
   form: FormGroup;
 
-  constructor(private userDataSrv: UserDataService, private fb: FormBuilder) {}
+  currentPage: number = 1;
+  limit: number = 5;
+  lastPage: number;
+
+  constructor(
+    private userDataSrv: UserDataService,
+    private fb: FormBuilder
+  ) {
+    this.searchData();
+  }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -21,10 +30,23 @@ export class UserListComponent implements OnInit{
       email: [undefined, [Validators.email]],
       surnames: [undefined]
     });
+  }
 
-    this.userDataSrv.getUserList().subscribe((data) => {
-      this.userList = data;
-    })
+  searchData() {
+    this.userDataSrv.getUserList(this.currentPage, this.limit, this.form?.value).subscribe(({list, lastPage}) => {
+      this.userList = list;
+      this.lastPage = lastPage;
+    });
+  }
+
+  nextPage() {
+    this.currentPage += 1;
+    this.searchData();
+  }
+
+  previousPage() {
+    this.currentPage -= 1;
+    this.searchData();
   }
 
 }

@@ -1,7 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../interfaces/user';
+import { environment } from 'src/environments/environment';
+import { UserFilter } from '../interfaces/user-filter';
+import { UserPagination } from '../interfaces/user-pagination';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +14,8 @@ export class UserDataService {
   constructor(private http: HttpClient) { }
 
 
-  getUserList(): Observable<User[]> {
-    return this.http.get<{ [key: string]: User[] }>('/assets/data/users.json')
-    .pipe(
-      map(({usuarios}) => usuarios)
-    );
+  getUserList(currentPage: number, itemsPerPage: number, filters?: UserFilter): Observable<UserPagination> {
+    return this.http.post<UserPagination>(`${environment.API_URL}:${environment.API_PORT}/api/users/list`, { filters, currentPage, itemsPerPage });
   }
 
 }
