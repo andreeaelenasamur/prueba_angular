@@ -26,14 +26,15 @@ export class UserListComponent implements OnInit{
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      name: [undefined],
-      email: [undefined, [Validators.email]],
-      surnames: [undefined]
+      name: [''],
+      email: ['', [Validators.email]],
+      surnames: ['']
     });
   }
 
   searchData() {
-    this.userDataSrv.getUserList(this.currentPage, this.limit, this.form?.value).subscribe(({list, lastPage}) => {
+    this.userDataSrv.getUserList(this.currentPage, this.limit, this.form?.value)
+    .subscribe(({list, lastPage}) => {
       this.userList = list;
       this.lastPage = lastPage;
     });

@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { User } from '../interfaces/user';
 import { environment } from 'src/environments/environment';
 import { UserFilter } from '../interfaces/user-filter';
 import { UserPagination } from '../interfaces/user-pagination';

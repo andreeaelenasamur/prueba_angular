@@ -1,27 +1,34 @@
 # PruebaAngular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.5.
+El proyecto ha sido creado con Angular CLI y con la versión 16 de Angular.
 
-## Development server
+## REQUISITOS
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Es importante tener mínimo Node 18 para ejecutar el proyecto ya que se usan algunas características implementadas a partir de esa version como el modo `--watch` para el servidor.
 
-## Code scaffolding
+Importante lanzar el comando `npm install` antes de ejecutar el servidor o la app.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## API
 
-## Build
+El proyecto incluye una pequeña API desarrollada con javascript vanilla ubicada en la carpeta `server` del proyecto. Hay que lanzar el comando `npm run server:dev` para lanzar el servidor.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## APP Frontend
 
-## Running unit tests
+La aplicación utiliza Bootstrap 5.X para el diseño. Consta de un solo módulo, llamado `users.module` con rutas propias y un único componente que implementa el listado y el filtro.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Para arrancar la app frontend, hay que lanzar el comando `npm start`.
 
-## Running end-to-end tests
+Importante: Hay que tener arrancado el back para que funcione. Se puede abrir una consola para el proceso del back y otra para la app web.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Servicios
 
-## Further help
+Existe un único servicio encargado de llamar a la API para la extracción de datos dentro del directorio `services`.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Interfaces
+
+En la carpeta `interfaces` dentro de user, existen diversas interfaces para tipar datos y respuestas del back.
+
+
+### Test Unitarios
+
+Se han implementado test unitarios para el componente de listado `user-list`. Se pueden comprobar lanzando el comando `npm run test`
