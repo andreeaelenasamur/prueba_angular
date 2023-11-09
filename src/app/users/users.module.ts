@@ -4,15 +4,20 @@ import { UserListComponent } from './components/user-list/user-list.component';
 import { UsersRoutingModule } from './users-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { UserDataService } from './services/user-data.service';
+import { FilterPipe } from './pipes/filter.pipe';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    UserListComponent
+    UserListComponent,
+    FilterPipe
   ],
   imports: [
     CommonModule,
     UsersRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     UserDataService

@@ -1,4 +1,17 @@
 <div class="container mt-3">
+
+  <form class="row my-3" [formGroup]="form">
+    <div class="col-12 col-md-4">
+      <input class="form-control" type="text" formControlName="name" placeholder="Name">
+    </div>
+    <div class="col-12 col-md-4">
+      <input class="form-control" type="email" formControlName="email" placeholder="Email">
+    </div>
+    <div class="col-12 col-md-4">
+      <input class="form-control" type="text" formControlName="surnames" placeholder="Surnames">
+    </div>
+  </form>
+
   <table class="table">
     <thead>
       <tr>
@@ -10,7 +23,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of userList">
+      <tr *ngFor="let user of userList | filter: form.value">
         <td>{{user.id}}</td>
         <td>{{user.name}}</td>
         <td>{{user.email}}</td>
