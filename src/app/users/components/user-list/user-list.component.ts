@@ -32,12 +32,15 @@ export class UserListComponent implements OnInit{
     });
   }
 
-  searchData() {
+  searchData(resetPage?: boolean) {
+    this.currentPage = resetPage ? 1 : this.currentPage;
     this.userDataSrv.getUserList(this.currentPage, this.limit, this.form?.value)
     .subscribe(({list, lastPage}) => {
       this.userList = list;
       this.lastPage = lastPage;
-    });
+    },
+    () => alert('Server failed')
+    );
   }
 
   nextPage() {
